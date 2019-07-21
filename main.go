@@ -46,19 +46,19 @@ func main() {
 func createRelations(moduleName string) []*Relation {
 	return []*Relation{
 		{
-			TemplateFilePath: "templates/service.template",
+			TemplateFilePath: "/service.template",
 			OutputFilePath: fmt.Sprintf("domain/service/%s/interface.go", moduleName),
 		},
 		{
-			TemplateFilePath: "templates/application.template",
+			TemplateFilePath: "/application.template",
 			OutputFilePath: fmt.Sprintf("application/%s.go", moduleName),
 		},
 		{
-			TemplateFilePath: "templates/repository.template",
+			TemplateFilePath: "/repository.template",
 			OutputFilePath: fmt.Sprintf("domain/repository/%s.go", moduleName),
 		},
 		{
-			TemplateFilePath: "templates/infrastructure.template",
+			TemplateFilePath: "/infrastructure.template",
 			OutputFilePath: fmt.Sprintf("infrastructure/%s.go", moduleName),
 		},
 	}
@@ -66,6 +66,9 @@ func createRelations(moduleName string) []*Relation {
 
 func generateFile(moduleName string, relation *Relation) (string, error) {
 	template, err := readTemplate(relation.TemplateFilePath)
+	if err != nil {
+		return "", err
+	}
 
 	replacedCode := convertCode(template, moduleName)
 
@@ -80,7 +83,7 @@ func generateFile(moduleName string, relation *Relation) (string, error) {
 func readTemplate(filename string) (string, error) {
 	statikFS, err := fs.New()
 	if err != nil {
-		panic(err)
+		return "", err
 	}
 
 	f, err := statikFS.Open(filename)
