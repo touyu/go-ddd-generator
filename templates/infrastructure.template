@@ -1,0 +1,14 @@
+package infrastructure
+
+import (
+	"database/sql"
+	"${working_dir}/domain/repository"
+)
+
+type ${project}Repository struct {
+	db *sql.DB
+}
+
+func New${Project}Repository(db *sql.DB) repository.${Project}Repository {
+	return &${project}Repository{db: db}
+}

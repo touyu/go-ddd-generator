@@ -1,0 +1,13 @@
+package application
+
+import (
+	"${working_dir}/domain/service/${project}"
+)
+
+type ${projectName}Service struct {
+
+}
+
+func New${Project}Service() ${project}.Service {
+	return &${projectName}Service{}
+}
