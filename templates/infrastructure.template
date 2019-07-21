@@ -5,10 +5,10 @@ import (
 	"${working_dir}/domain/repository"
 )
 
-type ${project}Repository struct {
+type ${projectName}Repository struct {
 	db *sql.DB
 }
 
 func New${Project}Repository(db *sql.DB) repository.${Project}Repository {
-	return &${project}Repository{db: db}
+	return &${projectName}Repository{db: db}
 }
