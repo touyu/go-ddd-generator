@@ -1,13 +1,18 @@
 package application
 
 import (
+    "${working_dir}/domain/repository"
 	"${working_dir}/domain/service/${project}"
 )
 
 type ${projectName}Service struct {
-
+    ${projectName}Repository repository.${Project}Repository
 }
 
-func New${Project}Service() ${project}.Service {
-	return &${projectName}Service{}
+func New${Project}Service(
+    ${projectName}Repository repository.${Project}Repository,
+    ) ${project}.Service {
+	return &${projectName}Service{
+	    ${projectName}Repository: ${projectName}Repository,
+	}
 }
